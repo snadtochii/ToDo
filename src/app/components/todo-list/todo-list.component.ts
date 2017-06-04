@@ -36,6 +36,7 @@ export class TodoListComponent implements OnInit {
   }
   editToDo(toDo: ToDo) {
     toDo.isEditing = !toDo.isEditing;
+    console.log(this.toDos)
   }
   cancelEditing(toDo: ToDo) {
     toDo.isEditing = false;
@@ -46,6 +47,7 @@ export class TodoListComponent implements OnInit {
       this.removeToDo(toDo);
     } else {
       toDo.title = editedTitle;
+      console.log(this.toDos)
     }
     toDo.isEditing = false;
     this.sortedBy = null;
