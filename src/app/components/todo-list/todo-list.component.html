@@ -1,0 +1,56 @@
+<section class="list">
+  <header>
+    <h1>TODO List</h1>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">TODO:</span>
+        <input type="text" class="form-control" [(ngModel)]="newToDoTitle" (keyup.enter)="addToDo()">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="addToDo()">ADD</button>
+        </span>
+      </div>
+    </div>
+  </header>
+  <section class="main">
+    <ul class="nav nav-pills">
+      <li [class.active]="sortedBy=='number'" (click)="sortByNumber()">
+        <a href="#">Number
+          <span *ngIf="!sortedBy" class="glyphicon glyphicon-sort"></span>
+          <span *ngIf="sortedBy=='number' && ascendingNumberOrder" class="glyphicon glyphicon-menu-down"></span>
+          <span *ngIf="sortedBy=='number' && !ascendingNumberOrder" class="glyphicon glyphicon-menu-up"></span>        
+        </a>
+      </li>
+      <li [class.active]="sortedBy=='name'" (click)="sortByName()">
+        <a href="#">Name
+          <span *ngIf="!sortedBy" class="glyphicon glyphicon-sort"></span>          
+          <span *ngIf="sortedBy=='name' && ascendingNameOrder" class="glyphicon glyphicon-menu-down"></span>
+          <span *ngIf="sortedBy=='name' && !ascendingNameOrder" class="glyphicon glyphicon-menu-up"></span>  
+        </a>
+      </li>
+    </ul>
+    <table class="table table-striped table-hover ">
+      <tbody>
+        <tr *ngFor="let todo of toDos; let index=index" [class.is-done]="todo.isDone">
+          <td class="small-col">{{todo.id}}</td>
+          <td class="small-col">
+            <input type="checkbox" [checked]="todo.isDone" (click)="toggleIsDone(todo)">
+          </td>
+          <td>
+            <label *ngIf="!todo.isEditing; else editor" class="title">{{todo.title}}</label>
+          </td>
+          <td class="right-col">
+            <span class="glyphicon glyphicon-remove controls" (click)="removeToDo(todo)"></span>
+            <span class="glyphicon glyphicon-pencil controls" (click)="editToDo(todo)"></span>
+          </td>
+          <ng-template #editor>
+            <input type="text" class="form-control edit-field" [value]="todo.title" #editedToDo (keyup.enter)="updateToDo(todo, editedToDo.value)"
+              (blur)="cancelEditing(todo)" (keyup.escape)="cancelEditing(todo)">
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <footer>
+
+  </footer>
+</section>

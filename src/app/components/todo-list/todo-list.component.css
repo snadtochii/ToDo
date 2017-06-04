@@ -1,0 +1,39 @@
+.controls{
+    float: right;
+    margin: 6px 5px;
+    cursor: pointer;
+}
+.checkbox-custom{
+    margin: 0;
+}
+.is-done{
+    opacity: 0.4;
+}
+.is-done>td>label{
+    text-decoration: line-through;
+
+}
+.title{
+    margin: 0;
+}
+.list{
+    font-size: 16px;
+}
+input[type="checkbox"]{
+    margin-bottom: -3px;
+}
+label{
+    margin: 0 10px 0 10px;
+}
+.small-col{
+    width: 50px;
+}
+.right-col{
+    width: 90px;
+}
+.edit-field{
+    height: auto;
+}
+.table>tbody>tr{
+    background-color: transparent;
+}
